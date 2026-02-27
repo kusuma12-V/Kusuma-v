@@ -1,0 +1,21 @@
+json
+[]
+elif menu == "Profile":
+    name = st.text_input("Farmer Name")
+    location = st.text_input("Location")
+    crop = st.text_input("Crop Type")
+
+    if st.button("Save Profile"):
+        profile = {
+            "name": name,
+            "location": location,
+            "crop": crop
+        }
+
+        with open("data/profiles.json", "r+") as file:
+            data = json.load(file)
+            data.append(profile)
+            file.seek(0)
+            json.dump(data, file, indent=4)
+
+        st.success("Profile Saved Successfully")
